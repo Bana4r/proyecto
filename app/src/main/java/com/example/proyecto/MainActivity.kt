@@ -4,13 +4,18 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var userDao: UserDao
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -21,16 +26,40 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        userDao = AppDatabase.getDatabase(this).userDao()
+
+        // Pre-populate database
+        lifecycleScope.launch {
+            if (userDao.findByEmail("admin@admin.com") == null) {
+                userDao.insert(User(email = "admin@admin.com", password = "admin"))
+            }
+        }
+
         val email = findViewById<EditText>(R.id.email)
         val password = findViewById<EditText>(R.id.password)
         val loginButton = findViewById<Button>(R.id.login)
+        val registerButton = findViewById<TextView>(R.id.register)
 
         loginButton.setOnClickListener {
-            if (email.text.toString() == "admin@admin.com" && password.text.toString() == "admin") {
-                startActivity(Intent(this, WelcomeActivity::class.java))
-            } else {
-                Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show()
+            val emailText = email.text.toString()
+            val passwordText = password.text.toString()
+
+            lifecycleScope.launch {
+                val user = userDao.findByEmail(emailText)
+                if (user != null && user.password == passwordText) {
+                    val intent = Intent(this@MainActivity, WelcomeActivity::class.java)
+                    intent.putExtra("USER_ID", user.id) // Pass the user ID to the next screen
+                    startActivity(intent)
+                } else {
+                    runOnUiThread {
+                        Toast.makeText(this@MainActivity, "Login Failed", Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
+        }
+
+        registerButton.setOnClickListener {
+            startActivity(Intent(this, RegisterActivity::class.java))
         }
     }
 }

@@ -21,6 +21,15 @@
             </intent-filter>
         </activity>
         <activity android:name=".WelcomeActivity" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".AddSubscriptionActivity" />
+        <activity android:name=".SelectCategoryActivity" />
+        <activity android:name=".SelectStreamingServiceActivity" />
+        <activity android:name=".SelectPlanActivity" />
+        <activity android:name=".SelectMusicServiceActivity" />
+        <activity android:name=".SelectGameServiceActivity" />
+        <activity android:name=".SelectHomeServiceActivity" />
+        <activity android:name=".AddExternalServiceActivity" />
     </application>
 
 </manifest>
