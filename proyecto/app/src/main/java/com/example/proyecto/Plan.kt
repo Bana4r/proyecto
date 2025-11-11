@@ -3,6 +3,7 @@ package com.example.proyecto
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
+//clase para los planes
 @Parcelize
 data class Plan(
     val name: String,
