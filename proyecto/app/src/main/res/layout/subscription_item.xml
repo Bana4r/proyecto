@@ -14,26 +14,16 @@
         android:layout_height="wrap_content"
         android:padding="16dp">
 
-        <ImageView
-            android:id="@+id/service_logo"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@android:drawable/ic_media_play"
-            app:tint="@android:color/white"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
             android:id="@+id/service_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:text="Netflix"
             android:textColor="@android:color/white"
             android:textSize="18sp"
-            app:layout_constraintStart_toEndOf="@id/service_logo"
-            app:layout_constraintTop_toTopOf="@id/service_logo"
-            app:layout_constraintEnd_toStartOf="@+id/cost"/>
+            app:layout_constraintEnd_toStartOf="@+id/cost"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="16dp" />
 
         <TextView
             android:id="@+id/plan_name"
@@ -42,9 +32,9 @@
             android:layout_marginTop="4dp"
             android:text="Plan Estándar se renueva en 8 octubre"
             android:textColor="@android:color/darker_gray"
-            app:layout_constraintStart_toStartOf="@id/service_name"
-            app:layout_constraintTop_toBottomOf="@id/service_name"
-            app:layout_constraintEnd_toEndOf="@id/service_name"/>
+            app:layout_constraintEnd_toEndOf="@id/service_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/service_name" />
 
         <TextView
             android:id="@+id/cost"
@@ -53,9 +43,8 @@
             android:text="$249.00"
             android:textColor="@android:color/white"
             android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/service_logo"
-            app:layout_constraintBottom_toBottomOf="@id/plan_name"/>
+            app:layout_constraintBottom_toBottomOf="@id/plan_name"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <ImageView
             android:id="@+id/delete_icon"
