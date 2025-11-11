@@ -1,5 +1,6 @@
 package com.example.proyecto
 
+//imports necesarios para el funcionamiento del proyecto
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
