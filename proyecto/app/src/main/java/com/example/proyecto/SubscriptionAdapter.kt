@@ -25,7 +25,7 @@ class SubscriptionAdapter(private val onActionClick: (Subscription) -> Unit) : L
         private val planName: TextView = itemView.findViewById(R.id.plan_name)
         private val cost: TextView = itemView.findViewById(R.id.cost)
         private val deleteIcon: ImageView = itemView.findViewById(R.id.delete_icon)
-
+        // Creamos una funcion 
         fun bind(subscription: Subscription, onActionClick: (Subscription) -> Unit) {
             serviceName.text = subscription.serviceName
             cost.text = String.format("$%.2f", subscription.cost)
